@@ -5,7 +5,5 @@ from .models import Tag
 
 def list_tags(request):
     tags = Tag.objects.all()
-    # tags_data = [{"id": tag.id, "name":tag.label} for tag in tags]
-    # {"tags": tags_data}
-    print(tags)
-    return JsonResponse(tags)
+    tags_data = [{"id": tag.id, "name":tag.label} for tag in tags]
+    return JsonResponse({"tags": tags_data})
