@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-3s+ud9r%8iu5e*xd6umbtrl8#2w1&*i4x^s=rltsp5nnmp1+1f"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'TheVerdictDB',
         'USER': 'postgres',
-        'PASSWORD': '1L@kers1',
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST': 'localhost',   # Set to empty string for localhost.
         'PORT': '5432',            # Set to empty string for default.
     }
