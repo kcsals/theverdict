@@ -7,6 +7,9 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.label
+    
+    class Meta:
+        ordering = ['label']
 
 class TaggedContent(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)

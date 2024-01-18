@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -10,7 +11,7 @@ class Post(models.Model):
     content = models.TextField()
     slug = models.SlugField(max_length=255) #A slug field for SEO-friendly URLs.
     published = models.BooleanField(default=False) #Is the post published or in a draft.
-    tags = models.ManyToManyField('Tag', related_name='posts')
+    tags = models.ManyToManyField('tags.Tag', related_name='posts')
     featured_image = models.ImageField(upload_to='images/', null=True, blank=True)
     views = models.PositiveIntegerField(default=0)
     rating = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
@@ -27,12 +28,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.user} on {self.post}"
-
-class Tag(models.Model):
-    name = models.CharField(max_length=20)
-    
-    def __str__(self):
-        return self.name
 
     
 
